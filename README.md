@@ -139,6 +139,26 @@ configuration flow, and how to add datasets, models or model variants.
 
 Small [interface tests](tests/README.md) help check new models and datasets.
 
+## Citation
+
+If you use this software, please cite this repository using
+[CITATION.cff](CITATION.cff). Also cite the publications relevant to the models
+you use:
+
+| Method or component | Publication |
+| --- | --- |
+| Laplace-Net framework | Zimmering et al. (2026), [Breaking Free: Decoupling Forced Systems with Laplace Neural Networks](https://doi.org/10.1007/978-3-032-06109-6_15). |
+| RLC model with physical prior knowledge, derivative scaling and pretraining | Zimmering, Roche and Niggemann (2024), [Enhancing Nonlinear Electrical Circuit Modeling with Prior Knowledge-Infused Neural ODEs](https://doi.org/10.1109/ETFA61755.2024.10711112). |
+| Optimised FDEint solver and NFDE comparison | Zimmering, Coelho and Niggemann (2024), [Optimising Neural Fractional Differential Equations for Performance and Efficiency](https://proceedings.mlr.press/v255/zimmering24a.html). |
+
+The dissertation builds on these methods and evaluates them on the forecasting
+tasks described above. In particular, it extends FDEint to known forcing.
+The [model guide](src/models/README.md) lists the underlying work for individual
+model variants.
+
+The dissertation has been submitted and is not yet published. Its bibliographic
+reference will be added after publication.
+
 ## License
 
 Original code and documentation are licensed under the [MIT License](LICENSE).

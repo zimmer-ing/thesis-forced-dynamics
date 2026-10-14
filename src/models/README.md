@@ -16,6 +16,9 @@ Laplace transformations reconstruct the response without an ODE solver.
 The formulation is described in Sections 6.2–6.4 and Appendix A. The individual
 components are described in Sections 6.3.1–6.3.6.
 
+The framework builds on [Zimmering et al.](https://doi.org/10.1007/978-3-032-06109-6_15).
+Chapter 6 develops its formulation and components for the forecasting task.
+
 ## Neural ordinary differential equations
 
 | Model | State and initialisation | Dissertation |
@@ -32,6 +35,17 @@ zero-augmented NODE reference variants.
 Implementation details are given in Appendix C. The RLC comparison is presented
 in Section 8.5.4.
 
+The variants combine existing approaches within the forecasting interface.
+The NODE formulation and latent-state model build on
+[Chen et al.](https://arxiv.org/abs/1806.07366). NO-Aug0 follows the augmentation
+approach of [Dupont et al.](https://arxiv.org/abs/1904.01681). The history-based
+initialisation of NO-AugH is related to
+[Wolf and Hans](https://arxiv.org/abs/2512.07757).
+
+The RLC model with physical prior knowledge, derivative scaling and pretraining
+build on [Zimmering, Roche and Niggemann](https://doi.org/10.1109/ETFA61755.2024.10711112).
+Their use in these models is described in Sections 5.1.2–5.1.3.
+
 ## Neural fractional differential equations
 
 [NFDE](../../configs/models/NFDE.yaml) uses a fractional differential equation
@@ -41,6 +55,11 @@ The variant is selected in [Train_NFDE.py](../../Scripts/Training/Train_NFDE.py)
 The Fractional NODE references also have variants with a time input.
 The forced NFDE formulation and solver are described in Sections 5.2.2–5.2.3.
 Section 8.5.3 describes the fixed-order and time-input variants used for evaluation.
+
+The NFDE approach follows [Coelho et al.](https://doi.org/10.1016/j.apm.2025.116060).
+The optimised FDEint solver and earlier unforced comparisons were published by
+[Zimmering, Coelho and Niggemann](https://proceedings.mlr.press/v255/zimmering24a.html).
+Section 5.2 extends the solver to process known forcing.
 
 ## Discrete baselines
 
@@ -54,3 +73,8 @@ Section 8.5.3 describes the fixed-order and time-input variants used for evaluat
 FC, LSTM, GRU and TCN are used in the main comparison. I-LSTM and FC-dt are
 additional references for the Fractional benchmark. Model and dataset lists
 are selected in the [training scripts](../../Scripts/Training/README.md).
+
+The recurrent cells follow [Hochreiter and Schmidhuber](https://doi.org/10.1162/neco.1997.9.8.1735)
+for LSTM and [Cho et al.](https://aclanthology.org/D14-1179/) for GRU. The TCN
+baseline follows [Bai, Kolter and Koltun](https://arxiv.org/abs/1803.01271).
+Section 8.3 describes their use with the common history and forcing interface.
