@@ -1,0 +1,729 @@
+{
+  "meta": {
+    "dataset": "IndPenSim",
+    "model": "M4AdaptiveNeuralODE",
+    "result_model": "M4AdaptiveNeuralODE",
+    "seed": 2,
+    "primary_seed_for_hparam_tuning": 42,
+    "source_protocol": "PB1_StandardHPO",
+    "train_fraction": 0.8,
+    "train_subset_size": 124,
+    "train_full_size": 155,
+    "reused_existing_model": false
+  },
+  "best_hyperparameters": {
+    "activation_ODE": "leaky_relu",
+    "activation_decoder": "tanh",
+    "hidden_size_ODE": 80,
+    "hidden_size_decoder": 104,
+    "hidden_size_encoder": 112,
+    "include_time": true,
+    "latent_dim_ODE": 8,
+    "learning_rate": 0.0037525975272098863,
+    "n_layers_hidden_ODE": 4,
+    "n_layers_hidden_decoder": 2,
+    "num_layers_encoder": 2
+  },
+  "success": true,
+  "training_info": {
+    "total_epochs": 1000,
+    "best_epoch": 937,
+    "best_val_loss": 0.001014034845866263,
+    "seed": 2,
+    "model_name": "M4AdaptiveNeuralODE",
+    "dataset_name": "IndPenSim",
+    "batch_size": 512,
+    "source": "retrained_subset"
+  },
+  "model_config": {
+    "dataset": {
+      "stride": 200,
+      "history_length": 50,
+      "forecast_length": 200,
+      "batch_size": 128,
+      "dim_x": 11,
+      "dim_y": 10,
+      "scaler": "minmax",
+      "name": "IndPenSim",
+      "scaler_params_content": null
+    },
+    "model": {
+      "hidden_size_ODE": 80,
+      "n_layers_hidden_ODE": 4,
+      "activation_ODE": "leaky_relu",
+      "latent_dim_ODE": 8,
+      "hidden_size_encoder": 112,
+      "num_layers_encoder": 2,
+      "rnn_type": "lstm",
+      "hidden_size_decoder": 104,
+      "n_layers_hidden_decoder": 2,
+      "activation_decoder": "tanh",
+      "include_time": true,
+      "homogeneous": false,
+      "interp_mode": "linear",
+      "adjoint": false,
+      "pretraining_scaling": false,
+      "solver": "dopri5",
+      "atol": 0.0001,
+      "rtol": 1e-07,
+      "fallback_on_nan_dt": false,
+      "fallback_solver": "rk4",
+      "fallback_step_size": 0.001,
+      "pretraining_epochs": 0,
+      "pretraining_lr": 0,
+      "learning_rate": 0.0037525975272098863,
+      "scaler_params": {
+        "exclude_columns": [
+          "Time (h)",
+          "Batch reference(Batch_ref:Batch ref)"
+        ],
+        "scaled_columns": [
+          "Aeration rate(Fg:L/h)",
+          "Agitator RPM(RPM:RPM)",
+          "Sugar feed rate(Fs:L/h)",
+          "Acid flow rate(Fa:L/h)",
+          "Base flow rate(Fb:L/h)",
+          "Heating/cooling water flow rate(Fc:L/h)",
+          "Heating water flow rate(Fh:L/h)",
+          "Water for injection/dilution(Fw:L/h)",
+          "Air head pressure(pressure:bar)",
+          "Dumped broth flow(Fremoved:L/h)",
+          "Substrate concentration(S:g/L)",
+          "Dissolved oxygen concentration(DO2:mg/L)",
+          "Penicillin concentration(P:g/L)",
+          "Vessel Volume(V:L)",
+          "Vessel Weight(Wt:Kg)",
+          "pH(pH:pH)",
+          "Temperature(T:K)",
+          "Generated heat(Q:kJ)",
+          "carbon dioxide percent in off-gas(CO2outgas:%)",
+          "PAA flow(Fpaa:PAA flow (L/h))",
+          "PAA concentration offline(PAA_offline:PAA (g L^{-1}))",
+          "Oil flow(Foil:L/hr)",
+          "NH_3 concentration off-line(NH3_offline:NH3 (g L^{-1}))",
+          "Oxygen Uptake Rate(OUR:(g min^{-1}))",
+          "Oxygen in percent in off-gas(O2:O2  (%))",
+          "Offline Penicillin concentration(P_offline:P(g L^{-1}))",
+          "Offline Biomass concentratio(X_offline:X(g L^{-1}))",
+          "Carbon evolution rate(CER:g/h)",
+          "Ammonia shots(NH3_shots:kgs)",
+          "Viscosity(Viscosity_offline:centPoise)",
+          "Fault reference(Fault_ref:Fault ref)",
+          "0 - Recipe driven 1 - Operator controlled(Control_ref:Control ref)",
+          "1- No Raman spec",
+          " 1-Raman spec recorded",
+          "2-PAT control(PAT_ref:PAT ref)",
+          "Batch ID",
+          "Fault flag"
+        ],
+        "scaling_details": {
+          "Aeration rate(Fg:L/h)": {
+            "min": -0.36363636363636365,
+            "scale": 0.01818181818181818,
+            "data_min": 20.0,
+            "data_max": 75.0,
+            "data_range": 55.0
+          },
+          "Agitator RPM(RPM:RPM)": {
+            "min": -100.0,
+            "scale": 1.0,
+            "data_min": 100.0,
+            "data_max": 100.0,
+            "data_range": 0.0
+          },
+          "Sugar feed rate(Fs:L/h)": {
+            "min": -0.013513513513513514,
+            "scale": 0.006756756756756757,
+            "data_min": 2.0,
+            "data_max": 150.0,
+            "data_range": 148.0
+          },
+          "Acid flow rate(Fa:L/h)": {
+            "min": 0.0,
+            "scale": 0.07694675284702986,
+            "data_min": 0.0,
+            "data_max": 12.996,
+            "data_range": 12.996
+          },
+          "Base flow rate(Fb:L/h)": {
+            "min": 0.0,
+            "scale": 0.0044444444444444444,
+            "data_min": 0.0,
+            "data_max": 225.0,
+            "data_range": 225.0
+          },
+          "Heating/cooling water flow rate(Fc:L/h)": {
+            "min": -6.666667111111142e-08,
+            "scale": 0.0006666667111111141,
+            "data_min": 0.0001,
+            "data_max": 1500.0,
+            "data_range": 1499.9999
+          },
+          "Heating water flow rate(Fh:L/h)": {
+            "min": -6.666667111111142e-08,
+            "scale": 0.0006666667111111141,
+            "data_min": 0.0001,
+            "data_max": 1500.0,
+            "data_range": 1499.9999
+          },
+          "Water for injection/dilution(Fw:L/h)": {
+            "min": 0.0,
+            "scale": 0.002,
+            "data_min": 0.0,
+            "data_max": 500.0,
+            "data_range": 500.0
+          },
+          "Air head pressure(pressure:bar)": {
+            "min": -1.1999999999999997,
+            "scale": 1.9999999999999996,
+            "data_min": 0.6,
+            "data_max": 1.1,
+            "data_range": 0.5000000000000001
+          },
+          "Dumped broth flow(Fremoved:L/h)": {
+            "min": 1.0,
+            "scale": 0.00025,
+            "data_min": -4000.0,
+            "data_max": 0.0,
+            "data_range": 4000.0
+          },
+          "Substrate concentration(S:g/L)": {
+            "min": -5.2465518498271155e-08,
+            "scale": 0.008675284570708064,
+            "data_min": 6.0477e-06,
+            "data_max": 115.27,
+            "data_range": 115.2699939523
+          },
+          "Dissolved oxygen concentration(DO2:mg/L)": {
+            "min": -0.06448284756254836,
+            "scale": 0.06448284756254836,
+            "data_min": 1.0,
+            "data_max": 16.508,
+            "data_range": 15.508
+          },
+          "Penicillin concentration(P:g/L)": {
+            "min": -1.021114888207169e-27,
+            "scale": 0.027637288229278942,
+            "data_min": 3.6947e-26,
+            "data_max": 36.183,
+            "data_range": 36.183
+          },
+          "Vessel Volume(V:L)": {
+            "min": -1.4437919677279343,
+            "scale": 2.5531697602573594e-05,
+            "data_min": 56549.0,
+            "data_max": 95716.0,
+            "data_range": 39167.0
+          },
+          "Vessel Weight(Wt:Kg)": {
+            "min": -1.2956130001072617,
+            "scale": 2.1452322213879653e-05,
+            "data_min": 60395.0,
+            "data_max": 107010.0,
+            "data_range": 46615.0
+          },
+          "pH(pH:pH)": {
+            "min": -3.9364558254906243,
+            "scale": 0.7295542423579192,
+            "data_min": 5.3957,
+            "data_max": 6.7664,
+            "data_range": 1.3707000000000003
+          },
+          "Temperature(T:K)": {
+            "min": -55.58801498127307,
+            "scale": 0.18726591760299513,
+            "data_min": 296.84,
+            "data_max": 302.18,
+            "data_range": 5.340000000000032
+          },
+          "Generated heat(Q:kJ)": {
+            "min": -5.838052429119069e-10,
+            "scale": 0.0005838052429119069,
+            "data_min": 1e-06,
+            "data_max": 1712.9,
+            "data_range": 1712.899999
+          },
+          "carbon dioxide percent in off-gas(CO2outgas:%)": {
+            "min": -0.0107046931049287,
+            "scale": 0.1419249997338906,
+            "data_min": 0.075425,
+            "data_max": 7.1214,
+            "data_range": 7.045975
+          },
+          "PAA flow(Fpaa:PAA flow (L/h))": {
+            "min": 0.0,
+            "scale": 0.06666666666666667,
+            "data_min": 0.0,
+            "data_max": 15.0,
+            "data_range": 15.0
+          },
+          "PAA concentration offline(PAA_offline:PAA (g L^{-1}))": {
+            "min": -0.03531610202229829,
+            "scale": 8.983999496896028e-05,
+            "data_min": 393.1,
+            "data_max": 11524.0,
+            "data_range": 11130.9
+          },
+          "Oil flow(Foil:L/hr)": {
+            "min": -1.6923076923076925,
+            "scale": 0.07692307692307693,
+            "data_min": 22.0,
+            "data_max": 35.0,
+            "data_range": 13.0
+          },
+          "NH_3 concentration off-line(NH3_offline:NH3 (g L^{-1}))": {
+            "min": -0.36830404403980516,
+            "scale": 0.00026466229091679015,
+            "data_min": 1391.6,
+            "data_max": 5170.0,
+            "data_range": 3778.4
+          },
+          "Oxygen Uptake Rate(OUR:(g min^{-1}))": {
+            "min": 0.155189863927728,
+            "scale": 0.12495158126226087,
+            "data_min": -1.242,
+            "data_max": 6.7611,
+            "data_range": 8.0031
+          },
+          "Oxygen in percent in off-gas(O2:O2  (%))": {
+            "min": -1.32129374553617,
+            "scale": 10.20304050607081,
+            "data_min": 0.1295,
+            "data_max": 0.22751,
+            "data_range": 0.09800999999999999
+          },
+          "Offline Penicillin concentration(P_offline:P(g L^{-1}))": {
+            "min": -1.021199557766722e-27,
+            "scale": 0.027639579878385848,
+            "data_min": 3.6947e-26,
+            "data_max": 36.18,
+            "data_range": 36.18
+          },
+          "Offline Biomass concentratio(X_offline:X(g L^{-1}))": {
+            "min": -0.014326516223876509,
+            "scale": 0.036379259602032726,
+            "data_min": 0.39381,
+            "data_max": 27.882,
+            "data_range": 27.488190000000003
+          },
+          "Carbon evolution rate(CER:g/h)": {
+            "min": -0.014199686651502511,
+            "scale": 0.49502132304349006,
+            "data_min": 0.028685,
+            "data_max": 2.0488,
+            "data_range": 2.020115
+          },
+          "Ammonia shots(NH3_shots:kgs)": {
+            "min": 0.0,
+            "scale": 1.0,
+            "data_min": 0.0,
+            "data_max": 0.0,
+            "data_range": 0.0
+          },
+          "Viscosity(Viscosity_offline:centPoise)": {
+            "min": -0.03579386709551736,
+            "scale": 0.00878312445599523,
+            "data_min": 4.0753,
+            "data_max": 117.93,
+            "data_range": 113.85470000000001
+          },
+          "Fault reference(Fault_ref:Fault ref)": {
+            "min": 0.0,
+            "scale": 1.0,
+            "data_min": 0.0,
+            "data_max": 1.0,
+            "data_range": 1.0
+          },
+          "0 - Recipe driven 1 - Operator controlled(Control_ref:Control ref)": {
+            "min": 0.0,
+            "scale": 1.0,
+            "data_min": 0.0,
+            "data_max": 1.0,
+            "data_range": 1.0
+          },
+          "1- No Raman spec": {
+            "min": -1.0,
+            "scale": 1.0,
+            "data_min": 1.0,
+            "data_max": 2.0,
+            "data_range": 1.0
+          },
+          " 1-Raman spec recorded": {
+            "min": -0.010101010101010102,
+            "scale": 0.010101010101010102,
+            "data_min": 1.0,
+            "data_max": 100.0,
+            "data_range": 99.0
+          },
+          "2-PAT control(PAT_ref:PAT ref)": {
+            "min": 0.0,
+            "scale": 1.0,
+            "data_min": 0.0,
+            "data_max": 1.0,
+            "data_range": 1.0
+          },
+          "Batch ID": {
+            "min": 0.0,
+            "scale": 5.137954066690644e-06,
+            "data_min": 0.0,
+            "data_max": 194630.0,
+            "data_range": 194630.0
+          },
+          "Fault flag": {
+            "min": 0.0,
+            "scale": 5.119279205487867e-06,
+            "data_min": 0.0,
+            "data_max": 195340.0,
+            "data_range": 195340.0
+          }
+        },
+        "scaler_type": "minmax"
+      },
+      "name": "M4AdaptiveNeuralODE"
+    },
+    "experiment": {
+      "seed": 42,
+      "wanted_device": "cuda",
+      "hyperparameter_tuning": {
+        "n_trials": 100,
+        "n_jobs": -1,
+        "jobs_per_gpu": 1,
+        "num_epochs": 750,
+        "use_pruner": false,
+        "min_epochs": 750,
+        "reduction_factor": 2
+      },
+      "num_epochs": 1000,
+      "batch_size": 512,
+      "failure_policy": {
+        "non_finite_is_failure": true,
+        "divergent_prediction_is_failure": true,
+        "max_abs_prediction": 1000000.0,
+        "max_abs_loss": 1000000000000.0
+      }
+    },
+    "chosen_device": "cuda"
+  },
+  "metrics": {
+    "train": {
+      "global": {
+        "mse": 0.0006707935989082128,
+        "rmse": 0.025899683374671065,
+        "mae": 0.015651376821276614,
+        "maxae": 0.7243306338787079
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.0027122797260926744,
+            0.023945656418800355,
+            0.008147063851356506,
+            0.02168143421411514,
+            0.0212333232909441,
+            0.013264178335666656,
+            0.012509175390005112,
+            0.0157098438590765,
+            0.0072732514142990114,
+            0.01322238266468048
+          ],
+          "median_rmse": [
+            0.003520719034308099,
+            0.02995946775462419,
+            0.009330900166817355,
+            0.02823618960187443,
+            0.027349292481986674,
+            0.017976777496585335,
+            0.016291699796660827,
+            0.020915529832308807,
+            0.009036731260881562,
+            0.01651256808661205
+          ],
+          "p95_rmse": [
+            0.016270718103526285,
+            0.06959342981747445,
+            0.028908795605717682,
+            0.040657776434940465,
+            0.0387133072361685,
+            0.03391638691412508,
+            0.04670239410123526,
+            0.04824812702205599,
+            0.019699773528830646,
+            0.03114231039176225
+          ],
+          "top5p_rmse_mean": [
+            0.03775471786876983,
+            0.08712611987032623,
+            0.056985375634401994,
+            0.05718200882582822,
+            0.05172636011268304,
+            0.10191294252892466,
+            0.05934816749002057,
+            0.06146892566357805,
+            0.023682770394880814,
+            0.03295660571254395
+          ],
+          "median_nrmse": [
+            0.04008510933941684,
+            0.31264266103894933,
+            0.03670339935946356,
+            0.12825378223505482,
+            0.12676952047669954,
+            0.2609165398581357,
+            0.5754912703637168,
+            0.2332677907211242,
+            0.1562172711961768,
+            0.43772033564115087
+          ]
+        },
+        "overall": {
+          "median_mae": 0.013969858916503656,
+          "median_rmse": 0.017912987551265934,
+          "p95_rmse": 0.03738530191558366,
+          "top5p_rmse_mean": 0.05701439941019574,
+          "median_nrmse": 0.23080676802298883
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/train",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "train",
+          "n_sequences": 155
+        }
+      }
+    },
+    "val": {
+      "global": {
+        "mse": 0.0010140348055990049,
+        "rmse": 0.03184391316404133,
+        "mae": 0.019588579651941825,
+        "maxae": 0.7534991130232811
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.0022551094556843053,
+            0.02939407616853714,
+            0.025526579320430755,
+            0.02305565893650055,
+            0.02347208321094513,
+            0.011700181066989898,
+            0.012474523112177848,
+            0.014591030403971672,
+            0.00912575699388981,
+            0.014935932755470276
+          ],
+          "median_rmse": [
+            0.0031084565715947,
+            0.036481776721745705,
+            0.027685562751642162,
+            0.02958841611624978,
+            0.02911001156358621,
+            0.015634569170102648,
+            0.015926368081018508,
+            0.018523098337814264,
+            0.01039134805293183,
+            0.017938316086827208
+          ],
+          "p95_rmse": [
+            0.03531505340614893,
+            0.09456978224881342,
+            0.08157190831282417,
+            0.08310665642529755,
+            0.06309965085642259,
+            0.03563569357714091,
+            0.047625055510902944,
+            0.0536507263042011,
+            0.01956351189646822,
+            0.035208283156950106
+          ],
+          "top5p_rmse_mean": [
+            0.05557222135653396,
+            0.10338660968255207,
+            0.10304852018435084,
+            0.11356855001336516,
+            0.08156102805525942,
+            0.04503671662851434,
+            0.06936788945863485,
+            0.06938009961155606,
+            0.022561971239004906,
+            0.037463349529230965
+          ],
+          "median_nrmse": [
+            0.09593357506346269,
+            0.3869845747348283,
+            0.10492496991074729,
+            0.1382329920344941,
+            0.1388150402163066,
+            0.9170941050717476,
+            0.529324644211562,
+            0.27074060360088825,
+            0.17617727799777427,
+            0.5383685459250807
+          ]
+        },
+        "overall": {
+          "median_mae": 0.01665309314245974,
+          "median_rmse": 0.020438792345351304,
+          "p95_rmse": 0.054934632169516995,
+          "top5p_rmse_mean": 0.07009469557590026,
+          "median_nrmse": 0.3296596328766892
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/val",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "val",
+          "n_sequences": 29
+        }
+      }
+    },
+    "test": {
+      "global": {
+        "mse": 0.002134842415571524,
+        "rmse": 0.046204354941623456,
+        "mae": 0.02518630875549784,
+        "maxae": 0.6324662566184998
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.0029671848523571496,
+            0.035853016376495364,
+            0.01993601515889168,
+            0.02581289380788803,
+            0.028456816524267195,
+            0.013062846064567566,
+            0.011605283841490746,
+            0.01653145395219326,
+            0.007641953974962234,
+            0.013670417666435241
+          ],
+          "median_rmse": [
+            0.0038213206782663814,
+            0.04174018851834131,
+            0.022483432417290797,
+            0.034308257024169134,
+            0.03496957019681862,
+            0.019233327089204055,
+            0.015108928296521062,
+            0.022558564584852274,
+            0.008739386414133724,
+            0.01601146045011991
+          ],
+          "p95_rmse": [
+            0.035136406800984676,
+            0.20803222930520718,
+            0.0799669200985568,
+            0.10993704176758325,
+            0.10932940655895682,
+            0.08457297390170963,
+            0.05633544237813505,
+            0.06211506149030111,
+            0.021286501441042015,
+            0.029003090256376898
+          ],
+          "top5p_rmse_mean": [
+            0.046044707485483685,
+            0.2423130027265143,
+            0.11178160347739527,
+            0.11379972426562018,
+            0.12629231592460455,
+            0.22306322025152675,
+            0.06044766932516579,
+            0.08173833878916836,
+            0.024019831262834593,
+            0.03070322170624648
+          ],
+          "median_nrmse": [
+            0.05838485708562977,
+            0.30169469240194186,
+            0.09103508476656692,
+            0.1456686041344063,
+            0.1523307888318326,
+            0.5777046855575385,
+            0.4904169326000967,
+            0.5115120039291977,
+            0.15889902806298023,
+            0.48499992454548424
+          ]
+        },
+        "overall": {
+          "median_mae": 0.017553788221954848,
+          "median_rmse": 0.021897443566971726,
+          "p95_rmse": 0.07957150739988535,
+          "top5p_rmse_mean": 0.10602036352145601,
+          "median_nrmse": 0.2972646601915675
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/test",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "test",
+          "n_sequences": 30
+        }
+      }
+    }
+  },
+  "evaluation_status": {
+    "success": true,
+    "n_splits": 3,
+    "n_failed_splits": 0,
+    "failed_splits": [],
+    "split_status": {
+      "train": {
+        "success": true,
+        "stage": "evaluation/train",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "train",
+          "n_sequences": 155
+        }
+      },
+      "val": {
+        "success": true,
+        "stage": "evaluation/val",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "val",
+          "n_sequences": 29
+        }
+      },
+      "test": {
+        "success": true,
+        "stage": "evaluation/test",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "test",
+          "n_sequences": 30
+        }
+      }
+    },
+    "failure_policy": {
+      "non_finite_is_failure": true,
+      "divergent_prediction_is_failure": true,
+      "max_abs_prediction": 1000000.0,
+      "max_abs_loss": 1000000000000.0
+    }
+  },
+  "residuals_train": 0.0006707935989082128,
+  "residuals_val": 0.0010140348055990049,
+  "residuals_test": 0.002134842415571524
+}

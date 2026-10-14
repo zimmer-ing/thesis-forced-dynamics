@@ -1,0 +1,52 @@
+encoder_hidden_size:  # Number of hidden channels per layer in the encoder TCN
+  default: 64
+  search_space:
+    type: "int"
+    low: 16
+    high: 256
+    step: 16
+
+decoder_hidden_size:  # Number of hidden channels per layer in the decoder TCN
+  default: 64
+  search_space:
+    type: "int"
+    low: 16
+    high: 256
+    step: 16
+
+num_layers:  # Number of TCN layers in both encoder and decoder
+  default: 3
+  search_space:
+    type: "categorical"
+    choices: [1, 2, 3, 4, 5]
+
+latent_dim:  # Dimensionality of the latent representation from the encoder
+  default: 32
+  search_space:
+    type: "int"
+    low: 8
+    high: 128
+    step: 8
+
+dropout:  # Dropout probability for regularization
+  default: 0.0
+
+response_only_history:
+  default: false
+
+learning_rate:  # Learning rate for training
+  default: 0.001
+  search_space:
+    type: "loguniform"
+    low: 1e-5
+    high: 1e-2
+
+dataset_overrides:
+  SMDSystem:
+    dropout:
+      default: 0.2
+      search_space:
+        type: "float"
+        low: 0.0
+        high: 0.4
+        step: 0.05

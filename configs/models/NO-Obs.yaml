@@ -1,0 +1,77 @@
+hidden_size_ODE:
+  default: 100
+  search_space:
+    type: "int"
+    low: 8
+    high: 150
+    step: 8
+
+n_layers_hidden_ODE:
+  default: 2
+  search_space:
+    type: "categorical"
+    choices: [1, 2, 3, 4]
+
+activation_ODE:
+  default: "relu"
+  search_space:
+        type: "categorical"
+        choices: ["relu", "leaky_relu", "tanh", "elu", "sigmoid", "none"]
+
+include_time:
+    default: false
+    search_space:
+        type: "categorical"
+        choices: [true, false]
+
+homogeneous:
+  default: false
+
+interp_mode:
+  default: "linear"
+
+adjoint:
+  default: false
+
+pretraining_scaling:
+  default: true
+
+solver:
+  default: "dopri5"
+atol:
+  default: 1e-4
+rtol:
+  default: 1e-7
+
+fallback_on_nan_dt:
+  default: false
+
+fallback_solver:
+  default: "rk4"
+
+fallback_step_size:
+  default: 1e-2
+
+
+pretraining_epochs:
+  default: 100
+  search_space:
+    type: "int"
+    low: 50
+    high: 500
+    step: 50
+
+pretraining_lr:
+  default: 0.001
+  search_space:
+    type: "loguniform"
+    low: 1e-5
+    high: 1e-2
+
+
+learning_rate:
+  default: 0.001
+  search_space:
+    type: "loguniform"
+    low: 1e-5
+    high: 1e-2

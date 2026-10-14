@@ -1,0 +1,71 @@
+chosen_device: cuda
+dataset:
+  batch_size: 256
+  dim_x: 1
+  dim_y: 1
+  forecast_length: 500
+  history_length: 50
+  name: SMDSystem
+  scaler_params_content: null
+  stride: -1
+  zero_initial_conditions: false
+experiment:
+  batch_size: 512
+  hyperparameter_tuning:
+    jobs_per_gpu: 2
+    min_epochs: 500
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 750
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  decoder_hidden_size:
+    default: 64
+    search_space:
+      high: 256
+      low: 16
+      step: 16
+      type: int
+  dropout:
+    default: 0.2
+    search_space:
+      high: 0.4
+      low: 0.0
+      step: 0.05
+      type: float
+  encoder_hidden_size:
+    default: 64
+    search_space:
+      high: 256
+      low: 16
+      step: 16
+      type: int
+  latent_dim:
+    default: 32
+    search_space:
+      high: 128
+      low: 8
+      step: 8
+      type: int
+  learning_rate:
+    default: 0.001
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  name: TCNEncoderDecoder
+  num_layers:
+    default: 3
+    search_space:
+      choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: categorical
+  scaler_params: null

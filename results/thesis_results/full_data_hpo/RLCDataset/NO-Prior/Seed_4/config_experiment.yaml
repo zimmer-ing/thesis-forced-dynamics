@@ -1,0 +1,136 @@
+chosen_device: cuda
+dataset:
+  batch_size: 256
+  dim_x: 2
+  dim_y: 4
+  forecast_length: 50
+  history_length: 5
+  name: RLCDataset
+  scaler_params_content: null
+  stride: 25
+experiment:
+  batch_size: 512
+  hyperparameter_tuning:
+    jobs_per_gpu: 1
+    min_epochs: 500
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 500
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  activation_ODE:
+    default: tanh
+    search_space:
+      choices:
+      - relu
+      - leaky_relu
+      - tanh
+      - elu
+      - sigmoid
+      - none
+      type: categorical
+  adjoint:
+    default: false
+  atol:
+    default: 0.0001
+  fallback_on_nan_dt:
+    default: true
+  fallback_solver:
+    default: rk4
+  fallback_step_size:
+    default: 0.001
+  has_physics: true
+  hidden_size_ODE:
+    default: 16
+    search_space:
+      high: 256
+      low: 8
+      step: 8
+      type: int
+  homogeneous:
+    default: false
+  include_time:
+    default: false
+    search_space:
+      choices:
+      - true
+      - false
+      type: categorical
+  interp_mode:
+    default: linear
+  learning_rate:
+    default: 0.001
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  n_layers_hidden_ODE:
+    default: 2
+    search_space:
+      choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      type: categorical
+  name: M2AdaptiveNeuralODE
+  physics_params:
+    C1:
+      initial_value: 0.0005
+      learn_as_factor: true
+      learnable: true
+    C2:
+      initial_value: 0.0002
+      learn_as_factor: true
+      learnable: true
+    L1:
+      initial_value: 9.0e-05
+      learn_as_factor: true
+      learnable: true
+    L2:
+      initial_value: 0.00025
+      learn_as_factor: true
+      learnable: true
+    R1:
+      initial_value: 0.35
+      learn_as_factor: true
+      learnable: true
+    R2:
+      initial_value: 0.2
+      learn_as_factor: true
+      learnable: true
+    slope_c1:
+      initial_value: 0.05
+      learn_as_factor: true
+      learnable: true
+    slope_c2:
+      initial_value: 0.05
+      learn_as_factor: true
+      learnable: true
+    slope_l1:
+      initial_value: 0.5
+      learn_as_factor: true
+      learnable: true
+    slope_l2:
+      initial_value: 0.5
+      learn_as_factor: true
+      learnable: true
+  pretraining_epochs:
+    default: 1000
+  pretraining_lr:
+    default: 1.0e-05
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  pretraining_scaling:
+    default: true
+  rtol:
+    default: 1.0e-07
+  scaler_params: null
+  solver:
+    default: dopri5

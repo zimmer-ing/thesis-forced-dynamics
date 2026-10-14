@@ -1,0 +1,406 @@
+chosen_device: cuda
+dataset:
+  batch_size: 128
+  dim_x: 11
+  dim_y: 10
+  forecast_length: 200
+  history_length: 50
+  name: IndPenSim
+  scaler: minmax
+  scaler_params_content: null
+  stride: 200
+experiment:
+  batch_size: 512
+  failure_policy:
+    divergent_prediction_is_failure: true
+    max_abs_loss: 1000000000000.0
+    max_abs_prediction: 1000000.0
+    non_finite_is_failure: true
+  hyperparameter_tuning:
+    jobs_per_gpu: 1
+    min_epochs: 750
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 750
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  LP_trafo_type:
+    default: FFLT
+    search_space:
+      choices:
+      - FFLT
+      - DLT
+      type: categorical
+  grid_limits:
+    default:
+    - -1
+    - 1
+  ilt_alpha:
+    default: 0.002
+    search_space:
+      high: 0.0101
+      low: 1.0e-05
+      step: 5.0e-05
+      type: float
+  ilt_scale:
+    default: 2.6
+    search_space:
+      high: 3
+      low: 1
+      step: 0.1
+      type: float
+  ilt_shift:
+    default: 8.0
+    search_space:
+      high: 10.0
+      low: 0.5
+      step: 0.1
+      type: float
+  ilt_terms:
+    default: 77
+    search_space:
+      high: 79
+      low: 33
+      step: 2
+      type: int
+  is_RNN_hidden_dim:
+    default: 40
+    search_space:
+      high: 64
+      low: 8
+      step: 4
+      type: int
+  is_RNN_num_layers:
+    default: 3
+    search_space:
+      high: 5
+      low: 1
+      step: 1
+      type: int
+  is_order_dim:
+    default: 1
+    search_space:
+      high: 4
+      low: 1
+      step: 1
+      type: int
+  laplace_scaling_factor:
+    default: 60.0
+    search_space:
+      high: 500.0
+      low: 10
+      step: 10.0
+      type: float
+  learning_rate:
+    default: 0.000287
+    search_space:
+      high: 0.01
+      low: 1.0e-06
+      type: loguniform
+  name: LaplaceNetFull
+  response_only_history:
+    default: false
+  scaler_params:
+    exclude_columns:
+    - Time (h)
+    - Batch reference(Batch_ref:Batch ref)
+    scaled_columns:
+    - Aeration rate(Fg:L/h)
+    - Agitator RPM(RPM:RPM)
+    - Sugar feed rate(Fs:L/h)
+    - Acid flow rate(Fa:L/h)
+    - Base flow rate(Fb:L/h)
+    - Heating/cooling water flow rate(Fc:L/h)
+    - Heating water flow rate(Fh:L/h)
+    - Water for injection/dilution(Fw:L/h)
+    - Air head pressure(pressure:bar)
+    - Dumped broth flow(Fremoved:L/h)
+    - Substrate concentration(S:g/L)
+    - Dissolved oxygen concentration(DO2:mg/L)
+    - Penicillin concentration(P:g/L)
+    - Vessel Volume(V:L)
+    - Vessel Weight(Wt:Kg)
+    - pH(pH:pH)
+    - Temperature(T:K)
+    - Generated heat(Q:kJ)
+    - carbon dioxide percent in off-gas(CO2outgas:%)
+    - PAA flow(Fpaa:PAA flow (L/h))
+    - PAA concentration offline(PAA_offline:PAA (g L^{-1}))
+    - Oil flow(Foil:L/hr)
+    - NH_3 concentration off-line(NH3_offline:NH3 (g L^{-1}))
+    - Oxygen Uptake Rate(OUR:(g min^{-1}))
+    - Oxygen in percent in off-gas(O2:O2  (%))
+    - Offline Penicillin concentration(P_offline:P(g L^{-1}))
+    - Offline Biomass concentratio(X_offline:X(g L^{-1}))
+    - Carbon evolution rate(CER:g/h)
+    - Ammonia shots(NH3_shots:kgs)
+    - Viscosity(Viscosity_offline:centPoise)
+    - Fault reference(Fault_ref:Fault ref)
+    - 0 - Recipe driven 1 - Operator controlled(Control_ref:Control ref)
+    - 1- No Raman spec
+    - ' 1-Raman spec recorded'
+    - 2-PAT control(PAT_ref:PAT ref)
+    - Batch ID
+    - Fault flag
+    scaler_type: minmax
+    scaling_details:
+      ' 1-Raman spec recorded':
+        data_max: 100.0
+        data_min: 1.0
+        data_range: 99.0
+        min: -0.010101010101010102
+        scale: 0.010101010101010102
+      0 - Recipe driven 1 - Operator controlled(Control_ref:Control ref):
+        data_max: 1.0
+        data_min: 0.0
+        data_range: 1.0
+        min: 0.0
+        scale: 1.0
+      1- No Raman spec:
+        data_max: 2.0
+        data_min: 1.0
+        data_range: 1.0
+        min: -1.0
+        scale: 1.0
+      2-PAT control(PAT_ref:PAT ref):
+        data_max: 1.0
+        data_min: 0.0
+        data_range: 1.0
+        min: 0.0
+        scale: 1.0
+      Acid flow rate(Fa:L/h):
+        data_max: 12.996
+        data_min: 0.0
+        data_range: 12.996
+        min: 0.0
+        scale: 0.07694675284702986
+      Aeration rate(Fg:L/h):
+        data_max: 75.0
+        data_min: 20.0
+        data_range: 55.0
+        min: -0.36363636363636365
+        scale: 0.01818181818181818
+      Agitator RPM(RPM:RPM):
+        data_max: 100.0
+        data_min: 100.0
+        data_range: 0.0
+        min: -100.0
+        scale: 1.0
+      Air head pressure(pressure:bar):
+        data_max: 1.1
+        data_min: 0.6
+        data_range: 0.5000000000000001
+        min: -1.1999999999999997
+        scale: 1.9999999999999996
+      Ammonia shots(NH3_shots:kgs):
+        data_max: 0.0
+        data_min: 0.0
+        data_range: 0.0
+        min: 0.0
+        scale: 1.0
+      Base flow rate(Fb:L/h):
+        data_max: 225.0
+        data_min: 0.0
+        data_range: 225.0
+        min: 0.0
+        scale: 0.0044444444444444444
+      Batch ID:
+        data_max: 194630.0
+        data_min: 0.0
+        data_range: 194630.0
+        min: 0.0
+        scale: 5.137954066690644e-06
+      Carbon evolution rate(CER:g/h):
+        data_max: 2.0488
+        data_min: 0.028685
+        data_range: 2.020115
+        min: -0.014199686651502511
+        scale: 0.49502132304349006
+      Dissolved oxygen concentration(DO2:mg/L):
+        data_max: 16.508
+        data_min: 1.0
+        data_range: 15.508
+        min: -0.06448284756254836
+        scale: 0.06448284756254836
+      Dumped broth flow(Fremoved:L/h):
+        data_max: 0.0
+        data_min: -4000.0
+        data_range: 4000.0
+        min: 1.0
+        scale: 0.00025
+      Fault flag:
+        data_max: 195340.0
+        data_min: 0.0
+        data_range: 195340.0
+        min: 0.0
+        scale: 5.119279205487867e-06
+      Fault reference(Fault_ref:Fault ref):
+        data_max: 1.0
+        data_min: 0.0
+        data_range: 1.0
+        min: 0.0
+        scale: 1.0
+      Generated heat(Q:kJ):
+        data_max: 1712.9
+        data_min: 1.0e-06
+        data_range: 1712.899999
+        min: -5.838052429119069e-10
+        scale: 0.0005838052429119069
+      Heating water flow rate(Fh:L/h):
+        data_max: 1500.0
+        data_min: 0.0001
+        data_range: 1499.9999
+        min: -6.666667111111142e-08
+        scale: 0.0006666667111111141
+      Heating/cooling water flow rate(Fc:L/h):
+        data_max: 1500.0
+        data_min: 0.0001
+        data_range: 1499.9999
+        min: -6.666667111111142e-08
+        scale: 0.0006666667111111141
+      NH_3 concentration off-line(NH3_offline:NH3 (g L^{-1})):
+        data_max: 5170.0
+        data_min: 1391.6
+        data_range: 3778.4
+        min: -0.36830404403980516
+        scale: 0.00026466229091679015
+      Offline Biomass concentratio(X_offline:X(g L^{-1})):
+        data_max: 27.882
+        data_min: 0.39381
+        data_range: 27.488190000000003
+        min: -0.014326516223876509
+        scale: 0.036379259602032726
+      Offline Penicillin concentration(P_offline:P(g L^{-1})):
+        data_max: 36.18
+        data_min: 3.6947e-26
+        data_range: 36.18
+        min: -1.021199557766722e-27
+        scale: 0.027639579878385848
+      Oil flow(Foil:L/hr):
+        data_max: 35.0
+        data_min: 22.0
+        data_range: 13.0
+        min: -1.6923076923076925
+        scale: 0.07692307692307693
+      Oxygen Uptake Rate(OUR:(g min^{-1})):
+        data_max: 6.7611
+        data_min: -1.242
+        data_range: 8.0031
+        min: 0.155189863927728
+        scale: 0.12495158126226087
+      Oxygen in percent in off-gas(O2:O2  (%)):
+        data_max: 0.22751
+        data_min: 0.1295
+        data_range: 0.09800999999999999
+        min: -1.32129374553617
+        scale: 10.20304050607081
+      PAA concentration offline(PAA_offline:PAA (g L^{-1})):
+        data_max: 11524.0
+        data_min: 393.1
+        data_range: 11130.9
+        min: -0.03531610202229829
+        scale: 8.983999496896028e-05
+      PAA flow(Fpaa:PAA flow (L/h)):
+        data_max: 15.0
+        data_min: 0.0
+        data_range: 15.0
+        min: 0.0
+        scale: 0.06666666666666667
+      Penicillin concentration(P:g/L):
+        data_max: 36.183
+        data_min: 3.6947e-26
+        data_range: 36.183
+        min: -1.021114888207169e-27
+        scale: 0.027637288229278942
+      Substrate concentration(S:g/L):
+        data_max: 115.27
+        data_min: 6.0477e-06
+        data_range: 115.2699939523
+        min: -5.2465518498271155e-08
+        scale: 0.008675284570708064
+      Sugar feed rate(Fs:L/h):
+        data_max: 150.0
+        data_min: 2.0
+        data_range: 148.0
+        min: -0.013513513513513514
+        scale: 0.006756756756756757
+      Temperature(T:K):
+        data_max: 302.18
+        data_min: 296.84
+        data_range: 5.340000000000032
+        min: -55.58801498127307
+        scale: 0.18726591760299513
+      Vessel Volume(V:L):
+        data_max: 95716.0
+        data_min: 56549.0
+        data_range: 39167.0
+        min: -1.4437919677279343
+        scale: 2.5531697602573594e-05
+      Vessel Weight(Wt:Kg):
+        data_max: 107010.0
+        data_min: 60395.0
+        data_range: 46615.0
+        min: -1.2956130001072617
+        scale: 2.1452322213879653e-05
+      Viscosity(Viscosity_offline:centPoise):
+        data_max: 117.93
+        data_min: 4.0753
+        data_range: 113.85470000000001
+        min: -0.03579386709551736
+        scale: 0.00878312445599523
+      Water for injection/dilution(Fw:L/h):
+        data_max: 500.0
+        data_min: 0.0
+        data_range: 500.0
+        min: 0.0
+        scale: 0.002
+      carbon dioxide percent in off-gas(CO2outgas:%):
+        data_max: 7.1214
+        data_min: 0.075425
+        data_range: 7.045975
+        min: -0.0107046931049287
+        scale: 0.1419249997338906
+      pH(pH:pH):
+        data_max: 6.7664
+        data_min: 5.3957
+        data_range: 1.3707000000000003
+        min: -3.9364558254906243
+        scale: 0.7295542423579192
+  steps:
+    default: 1
+    search_space:
+      high: 10
+      low: 1
+      step: 1
+      type: int
+  tf_activation:
+    default: tanh
+    search_space:
+      choices:
+      - tanh
+      - sigmoid
+      - softsign
+      - silu
+      type: categorical
+  tf_hidden_dim:
+    default: 128
+    search_space:
+      high: 192
+      low: 32
+      step: 16
+      type: int
+  tf_num_hidden_layers:
+    default: 4
+    search_space:
+      high: 6
+      low: 1
+      step: 1
+      type: int
+  tf_process_all_terms:
+    default: true
+  use_laplace_scaling:
+    default: true

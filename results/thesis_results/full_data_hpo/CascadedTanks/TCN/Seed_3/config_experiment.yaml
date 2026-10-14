@@ -1,0 +1,95 @@
+chosen_device: cuda
+dataset:
+  batch_size: 128
+  dim_x: 1
+  dim_y: 1
+  forecast_length: 150
+  history_length: 10
+  name: CascadedTanks
+  scaler: minmax
+  scaler_params_content: null
+  stride: 5
+experiment:
+  batch_size: 512
+  failure_policy:
+    divergent_prediction_is_failure: true
+    max_abs_loss: 1000000000000.0
+    max_abs_prediction: 1000000.0
+    non_finite_is_failure: true
+  hyperparameter_tuning:
+    jobs_per_gpu: 1
+    min_epochs: 500
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 750
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  decoder_hidden_size:
+    default: 64
+    search_space:
+      high: 256
+      low: 16
+      step: 16
+      type: int
+  dropout:
+    default: 0.0
+  encoder_hidden_size:
+    default: 64
+    search_space:
+      high: 256
+      low: 16
+      step: 16
+      type: int
+  latent_dim:
+    default: 32
+    search_space:
+      high: 128
+      low: 8
+      step: 8
+      type: int
+  learning_rate:
+    default: 0.001
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  name: TCNEncoderDecoder
+  num_layers:
+    default: 3
+    search_space:
+      choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: categorical
+  scaler_params:
+    exclude_columns:
+    - time_s
+    - source_id
+    scaled_columns:
+    - pump_voltage
+    - lower_tank_level
+    scaler_type: minmax
+    scaling_details:
+      lower_tank_level:
+        data_max: 10.0
+        data_min: 2.911573968108644
+        data_range: 7.0884260318913554
+        min: -0.41075041977009513
+        min_: -0.41075041977009513
+        scale: 0.1410750419770095
+        scale_: 0.1410750419770095
+      pump_voltage:
+        data_max: 6.471210099744564
+        data_min: 1.2099252459897365
+        data_range: 5.261284853754828
+        min: -0.22996763711173093
+        min_: -0.22996763711173093
+        scale: 0.19006764085132719
+        scale_: 0.19006764085132719

@@ -1,0 +1,235 @@
+chosen_device: cuda
+dataset:
+  batch_size: 512
+  dim_x: 6
+  dim_y: 6
+  forecast_length: 150
+  history_length: 50
+  name: IndustrialRobotForward
+  scaler: minmax
+  scaler_params_content: null
+  stride: 25
+experiment:
+  batch_size: 512
+  failure_policy:
+    divergent_prediction_is_failure: true
+    max_abs_loss: 1000000000000.0
+    max_abs_prediction: 1000000.0
+    non_finite_is_failure: true
+  hyperparameter_tuning:
+    jobs_per_gpu: 2
+    min_epochs: 750
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 750
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  activation_ODE:
+    default: relu
+    search_space:
+      choices:
+      - relu
+      - leaky_relu
+      - tanh
+      - elu
+      - sigmoid
+      - none
+      type: categorical
+  adjoint:
+    default: false
+  atol:
+    default: 0.0001
+  augmentation_type:
+    default: history_encoder
+  augmented_dim_ODE:
+    default: 1
+    search_space:
+      high: 16
+      low: 1
+      step: 1
+      type: int
+  fallback_on_nan_dt:
+    default: false
+  fallback_solver:
+    default: rk4
+  fallback_step_size:
+    default: 0.001
+  hidden_size_ODE:
+    default: 100
+    search_space:
+      high: 150
+      low: 8
+      step: 8
+      type: int
+  hidden_size_encoder:
+    default: 64
+    search_space:
+      high: 150
+      low: 8
+      step: 8
+      type: int
+  homogeneous:
+    default: false
+  include_time:
+    default: true
+    search_space:
+      choices:
+      - true
+      - false
+      type: categorical
+  interp_mode:
+    default: linear
+  learning_rate:
+    default: 0.001
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  n_layers_hidden_ODE:
+    default: 2
+    search_space:
+      choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      type: categorical
+  name: M3HAdaptiveNeuralODE
+  num_layers_encoder:
+    default: 1
+    search_space:
+      choices:
+      - 1
+      - 2
+      - 3
+      type: categorical
+  pretraining_epochs:
+    default: 0
+  pretraining_lr:
+    default: 0
+  pretraining_scaling:
+    default: true
+  rnn_type:
+    default: lstm
+  rtol:
+    default: 1.0e-07
+  scaler_params:
+    exclude_columns:
+    - time_s
+    scaled_columns:
+    - motor_torque_1
+    - motor_torque_2
+    - motor_torque_3
+    - motor_torque_4
+    - motor_torque_5
+    - motor_torque_6
+    - axis_position_1
+    - axis_position_2
+    - axis_position_3
+    - axis_position_4
+    - axis_position_5
+    - axis_position_6
+    scaler_type: minmax
+    scaling_details:
+      axis_position_1:
+        data_max: 69.38450597484423
+        data_min: -68.7753077222074
+        data_range: 138.15981369705162
+        min: 0.49779531313652237
+        min_: 0.49779531313652237
+        scale: 0.007237994705122712
+        scale_: 0.007237994705122712
+      axis_position_2:
+        data_max: 37.36795197937667
+        data_min: -23.60907806659556
+        data_range: 60.97703004597223
+        min: 0.3871798618069138
+        min_: 0.3871798618069138
+        scale: 0.01639961800773296
+        scale_: 0.01639961800773296
+      axis_position_3:
+        data_max: 34.52527436161371
+        data_min: -96.92220258300551
+        data_range: 131.4474769446192
+        min: 0.7373454769606592
+        min_: 0.7373454769606592
+        scale: 0.007607601326736115
+        scale_: 0.007607601326736115
+      axis_position_4:
+        data_max: 112.51673814923255
+        data_min: -123.46195665702372
+        data_range: 235.97869480625627
+        min: 0.5231911158691199
+        min_: 0.5231911158691199
+        scale: 0.004237670696589885
+        scale_: 0.004237670696589885
+      axis_position_5:
+        data_max: 76.68445442341047
+        data_min: -72.34983735763825
+        data_range: 149.03429178104872
+        min: 0.4854576520142748
+        min_: 0.4854576520142748
+        scale: 0.006709865146131157
+        scale_: 0.006709865146131157
+      axis_position_6:
+        data_max: 98.00819192974974
+        data_min: -121.76732964437589
+        data_range: 219.77552157412563
+        min: 0.5540531937871267
+        min_: 0.5540531937871267
+        scale: 0.004550097266690918
+        scale_: 0.004550097266690918
+      motor_torque_1:
+        data_max: 8.846685864114045
+        data_min: -7.866961084593015
+        data_range: 16.71364694870706
+        min: 0.4706908736756337
+        min_: 0.4706908736756337
+        scale: 0.05983134638830925
+        scale_: 0.05983134638830925
+      motor_torque_2:
+        data_max: 7.1940312301105465
+        data_min: -15.325074151483909
+        data_range: 22.519105381594457
+        min: 0.6805365440498162
+        min_: 0.6805365440498162
+        scale: 0.04440673743715104
+        scale_: 0.04440673743715104
+      motor_torque_3:
+        data_max: 6.69183234834485
+        data_min: -19.867180489583333
+        data_range: 26.559012837928183
+        min: 0.7480391161681871
+        min_: 0.7480391161681871
+        scale: 0.03765200183087859
+        scale_: 0.03765200183087859
+      motor_torque_4:
+        data_max: 2.891246732419066
+        data_min: -3.418838898278773
+        data_range: 6.31008563069784
+        min: 0.5418054680029247
+        min_: 0.5418054680029247
+        scale: 0.1584764547623752
+        scale_: 0.1584764547623752
+      motor_torque_5:
+        data_max: 3.1632565950640794
+        data_min: -4.658192230960744
+        data_range: 7.821448826024824
+        min: 0.5955664141739615
+        min_: 0.5955664141739615
+        scale: 0.12785355018531017
+        scale_: 0.12785355018531017
+      motor_torque_6:
+        data_max: 2.8145448852699437
+        data_min: -2.736737088376596
+        data_range: 5.55128197364654
+        min: 0.4929919073411581
+        min_: 0.4929919073411581
+        scale: 0.18013857064859518
+        scale_: 0.18013857064859518
+  solver:
+    default: dopri5

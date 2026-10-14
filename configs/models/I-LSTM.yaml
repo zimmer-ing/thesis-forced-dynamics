@@ -1,0 +1,39 @@
+hidden_size:          # number of units in the LSTM layers
+  default: 128
+  search_space:
+    type: "int"
+    low: 8
+    high: 512
+    step: 8
+
+num_layers:           # number of stacked LSTM layers
+  default: 2
+  search_space:
+    type: "int"
+    low: 1
+    high: 5
+    step: 1
+
+dropout:              # dropout between LSTM layers (ignored if num_layers == 1)
+  default: 0.0
+
+init_hidden_size:     # width of the hidden layer in the init-MLP
+  default: 128
+  search_space:
+    type: "int"
+    low: 8
+    high: 512
+    step: 8
+
+init_activation:      # activation in the init-MLP (between fc1 and fc2)
+  default: "tanh"
+  search_space:
+    type: "categorical"
+    choices: ["tanh", "relu", "leaky_relu", "elu", "none"]
+
+learning_rate:
+  default: 0.001
+  search_space:
+    type: "loguniform"
+    low: 1e-6
+    high: 1e-2

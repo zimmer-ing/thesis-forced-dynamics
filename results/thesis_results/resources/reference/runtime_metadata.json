@@ -1,0 +1,85 @@
+{
+  "datasets": [
+    "SMDSystem",
+    "IndPenSim",
+    "CascadedTanks",
+    "IndustrialRobotForward"
+  ],
+  "models": null,
+  "model_profile": "focused",
+  "selected_models_by_dataset": {
+    "SMDSystem": [
+      "LaplaceNet",
+      "M3H",
+      "LSTMSeq2Seq"
+    ],
+    "IndPenSim": [
+      "LaplaceNet",
+      "M4AdaptiveNeuralODE",
+      "GRUSeq2Seq"
+    ],
+    "CascadedTanks": [
+      "LaplaceNet",
+      "M3H",
+      "GRUSeq2Seq"
+    ],
+    "IndustrialRobotForward": [
+      "LaplaceNet",
+      "M3Z",
+      "FCSimple_t"
+    ]
+  },
+  "selection_file": "configs/protocols/evaluation_model_selection.yaml",
+  "checkpoint_datasets": {
+    "SMDSystem": "SMDSystem",
+    "IndPenSim": "IndPenSim",
+    "CascadedTanks": "CascadedTanks",
+    "IndustrialRobotForward": "IndustrialRobotForward"
+  },
+  "measurements": [
+    "parameters",
+    "inference_time",
+    "inference_memory",
+    "training_memory"
+  ],
+  "seed": 42,
+  "forecast_steps": [
+    10,
+    25,
+    50,
+    100,
+    200,
+    400,
+    600,
+    800,
+    1000
+  ],
+  "sample_counts": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000
+  ],
+  "repeats": 10,
+  "warmup_repeats": 5,
+  "timing_sleep_s": 0.1,
+  "cleanup_sleep_s": 0.25,
+  "inference_timing": "median_individual_forward_latency",
+  "notes": [
+    "Timing and memory measurements are separate rows.",
+    "Each measurement point loads PB1 model_config.yaml and best_model.pth freshly.",
+    "Five untimed warm-up forwards precede ten individually timed forwards by default.",
+    "Every timed forward is synchronised immediately before and after execution; the median individual latency is reported.",
+    "A short sleep between timed forwards is outside the measured interval; cleanup happens after each measurement point.",
+    "LaplaceNet is called directly without a precomputed X_s argument, so its forward method recomputes the input transformation on every invocation.",
+    "Forecast-step scaling uses a real long window from the scaled dataset and slices prefixes.",
+    "Sample-count scaling copies the same real window to isolate batch-size effects."
+  ]
+}

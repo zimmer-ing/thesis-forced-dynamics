@@ -1,0 +1,221 @@
+chosen_device: cuda
+dataset:
+  batch_size: 512
+  dim_x: 4
+  dim_y: 12
+  forecast_length: 50
+  history_length: 25
+  name: NanoDroneRunSplit
+  scaler: minmax
+  scaler_params_content: null
+  stride: 10
+experiment:
+  batch_size: 512
+  failure_policy:
+    divergent_prediction_is_failure: true
+    max_abs_loss: 1000000000000.0
+    max_abs_prediction: 1000000.0
+    non_finite_is_failure: true
+  hyperparameter_tuning:
+    jobs_per_gpu: 1
+    min_epochs: 500
+    n_jobs: -1
+    n_trials: 100
+    num_epochs: 750
+    reduction_factor: 2
+    use_pruner: false
+  num_epochs: 1000
+  seed: 42
+  wanted_device: cuda
+model:
+  activation:
+    default: ReLU
+    search_space:
+      choices:
+      - ReLU
+      - LeakyReLU
+      - ELU
+      - Sigmoid
+      type: categorical
+  hidden_layers:
+    default: 2
+    search_space:
+      high: 4
+      low: 0
+      step: 1
+      type: int
+  hidden_width:
+    default: 512
+    search_space:
+      high: 1024
+      low: 64
+      step: 64
+      type: int
+  learning_rate:
+    default: 0.001
+    search_space:
+      high: 0.01
+      low: 1.0e-05
+      type: loguniform
+  name: FCSimple_t
+  scaler_params:
+    exclude_columns:
+    - time_s
+    - quat_x_raw
+    - quat_y_raw
+    - quat_z_raw
+    - quat_w_raw
+    - acc_body_x
+    - acc_body_y
+    - acc_body_z
+    - trajectory_code
+    - run_idx
+    scaled_columns:
+    - m1_rads
+    - m2_rads
+    - m3_rads
+    - m4_rads
+    - pos_x
+    - pos_y
+    - pos_z
+    - vel_x
+    - vel_y
+    - vel_z
+    - rotvec_x
+    - rotvec_y
+    - rotvec_z
+    - omega_x
+    - omega_y
+    - omega_z
+    scaler_type: minmax
+    scaling_details:
+      m1_rads:
+        data_max: 2490.493924102641
+        data_min: 657.9496154986545
+        data_range: 1832.5443086039863
+        min: -0.3590361293909852
+        min_: -0.3590361293909852
+        scale: 0.0005456893976887193
+        scale_: 0.0005456893976887193
+      m2_rads:
+        data_max: 2457.221024073862
+        data_min: 633.0312876260869
+        data_range: 1824.189736447775
+        min: -0.34702052915766424
+        min_: -0.34702052915766424
+        scale: 0.0005481885902654454
+        scale_: 0.0005481885902654454
+      m3_rads:
+        data_max: 2488.2349828517526
+        data_min: 611.0579206815911
+        data_range: 1877.1770621701617
+        min: -0.3255195969500932
+        min_: -0.3255195969500932
+        scale: 0.0005327147982747683
+        scale_: 0.0005327147982747683
+      m4_rads:
+        data_max: 2466.9956304582365
+        data_min: 589.3929132277024
+        data_range: 1877.6027172305342
+        min: -0.3139071475658373
+        min_: -0.3139071475658373
+        scale: 0.0005325940311137816
+        scale_: 0.0005325940311137816
+      omega_x:
+        data_max: 7.483983093417608
+        data_min: -8.019514042183054
+        data_range: 15.503497135600663
+        min: 0.5172712951175289
+        min_: 0.5172712951175289
+        scale: 0.06450157608012848
+        scale_: 0.06450157608012848
+      omega_y:
+        data_max: 7.602688510117931
+        data_min: -6.512910756735162
+        data_range: 14.115599266853092
+        min: 0.46139810528831626
+        min_: 0.46139810528831626
+        scale: 0.07084360933568344
+        scale_: 0.07084360933568344
+      omega_z:
+        data_max: 4.615003946898916
+        data_min: -3.0314469252023133
+        data_range: 7.64645087210123
+        min: 0.3964515009522683
+        min_: 0.3964515009522683
+        scale: 0.13077962792497508
+        scale_: 0.13077962792497508
+      pos_x:
+        data_max: 1.2291543859628706
+        data_min: -1.114717769194247
+        data_range: 2.3438721551571176
+        min: 0.47558812742477574
+        min_: 0.47558812742477574
+        scale: 0.42664443015790965
+        scale_: 0.42664443015790965
+      pos_y:
+        data_max: 1.0889626852846974
+        data_min: -1.0776463752492826
+        data_range: 2.16660906053398
+        min: 0.4973884744041859
+        min_: 0.4973884744041859
+        scale: 0.46155073299358457
+        scale_: 0.46155073299358457
+      pos_z:
+        data_max: 2.056985345622238
+        data_min: 0.4911368208405283
+        data_range: 1.5658485247817098
+        min: -0.3136553843284402
+        min_: -0.3136553843284402
+        scale: 0.638631377284343
+        scale_: 0.638631377284343
+      rotvec_x:
+        data_max: 1.3411295397178074
+        data_min: -1.2439715287490576
+        data_range: 2.585101068466865
+        min: 0.4812080827024742
+        min_: 0.4812080827024742
+        scale: 0.3868320709770415
+        scale_: 0.3868320709770415
+      rotvec_y:
+        data_max: 1.122861598559911
+        data_min: -1.018550478631334
+        data_range: 2.1414120771912453
+        min: 0.4756443140861063
+        min_: 0.4756443140861063
+        scale: 0.4669815822238365
+        scale_: 0.4669815822238365
+      rotvec_z:
+        data_max: 0.4152298620983261
+        data_min: -0.39421063357457603
+        data_range: 0.8094404956729021
+        min: 0.4870161990682982
+        min_: 0.4870161990682982
+        scale: 1.235421263633076
+        scale_: 1.235421263633076
+      vel_x:
+        data_max: 2.604896048633975
+        data_min: -2.6065596919273046
+        data_range: 5.21145574056128
+        min: 0.5001596140671771
+        min_: 0.5001596140671771
+        scale: 0.19188496454395654
+        scale_: 0.19188496454395654
+      vel_y:
+        data_max: 2.626227853812989
+        data_min: -2.611311465616678
+        data_range: 5.237539319429667
+        min: 0.49857601181713557
+        min_: 0.49857601181713557
+        scale: 0.19092935422752938
+        scale_: 0.19092935422752938
+      vel_z:
+        data_max: 2.9689714130279903
+        data_min: -2.009796861679061
+        data_range: 4.978768274707051
+        min: 0.4036735093475136
+        min_: 0.4036735093475136
+        scale: 0.2008528906798418
+        scale_: 0.2008528906798418
+  use_dt:
+    default: false

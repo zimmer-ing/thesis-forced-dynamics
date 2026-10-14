@@ -1,0 +1,293 @@
+{
+  "meta": {
+    "protocol": "P1_FractionalDataFraction",
+    "dataset": "FractionalBenchmarkForcing",
+    "variant": "M3_zero_no_time",
+    "model": "M3ZAdaptiveNeuralODE",
+    "seed": 2,
+    "primary_seed_for_hparam_tuning": 42,
+    "train_fraction": 0.4,
+    "train_fraction_tag": "040pct",
+    "train_subset_size": 16,
+    "train_full_size": 40,
+    "reused_existing_model": false,
+    "config_overrides": {
+      "model": {
+        "include_time": false
+      }
+    }
+  },
+  "best_hyperparameters": {
+    "hidden_size_ODE": 88,
+    "n_layers_hidden_ODE": 2,
+    "activation_ODE": "none",
+    "augmented_dim_ODE": 11,
+    "hidden_size_encoder": 104,
+    "num_layers_encoder": 2,
+    "learning_rate": 0.007138640935405503
+  },
+  "success": true,
+  "training_info": {
+    "total_epochs": 1000,
+    "best_epoch": 1000,
+    "best_val_loss": 4.924061158817494e-06,
+    "train_loss_at_best_epoch": 2.9046268537058495e-06,
+    "last_epoch_train_loss": 2.9046268537058495e-06,
+    "last_epoch_val_loss": 4.924061158817494e-06,
+    "mean_train_loss": 0.0008532926503417002,
+    "mean_val_loss": 0.0009875493770191497,
+    "wall_clock_training_seconds": 1104.1463041305542,
+    "seed": 2,
+    "model_name": "M3ZAdaptiveNeuralODE",
+    "dataset_name": "FractionalBenchmarkForcing",
+    "batch_size": 512,
+    "source": "retrained_data_fraction"
+  },
+  "model_config": {
+    "dataset": {
+      "task": "forecasting",
+      "sample_mode": "full_trajectory",
+      "history_length": 1,
+      "batch_size": 64,
+      "dim_x": 1,
+      "dim_y": 1,
+      "scaler": "none",
+      "name": "FractionalBenchmarkForcing",
+      "scaler_params_content": null
+    },
+    "model": {
+      "hidden_size_ODE": 88,
+      "n_layers_hidden_ODE": 2,
+      "activation_ODE": "none",
+      "augmented_dim_ODE": 11,
+      "augmentation_type": "zero",
+      "include_time": false,
+      "homogeneous": false,
+      "interp_mode": "linear",
+      "adjoint": false,
+      "pretraining_scaling": true,
+      "solver": "dopri5",
+      "atol": 0.0001,
+      "rtol": 1e-07,
+      "fallback_on_nan_dt": false,
+      "fallback_solver": "rk4",
+      "fallback_step_size": 0.001,
+      "pretraining_epochs": 0,
+      "pretraining_lr": 0,
+      "learning_rate": 0.007138640935405503,
+      "scaler_params": null,
+      "name": "M3ZAdaptiveNeuralODE",
+      "hidden_size_encoder": 104,
+      "num_layers_encoder": 2
+    },
+    "experiment": {
+      "seed": 42,
+      "wanted_device": "cuda",
+      "hyperparameter_tuning": {
+        "n_trials": 100,
+        "n_jobs": -1,
+        "jobs_per_gpu": 1,
+        "num_epochs": 750,
+        "use_pruner": false,
+        "min_epochs": 500,
+        "reduction_factor": 2
+      },
+      "num_epochs": 1000,
+      "batch_size": 512,
+      "failure_policy": {
+        "non_finite_is_failure": true,
+        "divergent_prediction_is_failure": true,
+        "max_abs_prediction": 1000000.0,
+        "max_abs_loss": 1000000000000.0
+      }
+    },
+    "chosen_device": "cuda"
+  },
+  "metrics": {
+    "train": {
+      "global": {
+        "mse": 2.68830408199388e-06,
+        "rmse": 0.0016396048554434938,
+        "mae": 0.0008280327014758271,
+        "maxae": 0.014584377408027649
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.000810986906681137
+          ],
+          "median_rmse": [
+            0.0012972618314479939
+          ],
+          "p95_rmse": [
+            0.002507570691005569
+          ],
+          "top5p_rmse_mean": [
+            0.0025973886616032886
+          ],
+          "median_nrmse": [
+            0.0043109071199631125
+          ]
+        },
+        "overall": {
+          "median_mae": 0.000810986906681137,
+          "median_rmse": 0.0012972618314479939,
+          "p95_rmse": 0.002507570691005569,
+          "top5p_rmse_mean": 0.0025973886616032886,
+          "median_nrmse": 0.0043109071199631125
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/train",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "train",
+          "n_sequences": 40
+        }
+      }
+    },
+    "val": {
+      "global": {
+        "mse": 4.924060637460552e-06,
+        "rmse": 0.002219022450868975,
+        "mae": 0.0011584120097646747,
+        "maxae": 0.020323872566223145
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.001101982238656092
+          ],
+          "median_rmse": [
+            0.0017572041996421098
+          ],
+          "p95_rmse": [
+            0.003098565434880559
+          ],
+          "top5p_rmse_mean": [
+            0.003745517977380969
+          ],
+          "median_nrmse": [
+            0.004873134776831132
+          ]
+        },
+        "overall": {
+          "median_mae": 0.001101982238656092,
+          "median_rmse": 0.0017572041996421098,
+          "p95_rmse": 0.003098565434880559,
+          "top5p_rmse_mean": 0.003745517977380969,
+          "median_nrmse": 0.004873134776831132
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/val",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "val",
+          "n_sequences": 20
+        }
+      }
+    },
+    "test": {
+      "global": {
+        "mse": 1.6160181190121718e-05,
+        "rmse": 0.004019972784748887,
+        "mae": 0.0028418934754815836,
+        "maxae": 0.028635799884796143
+      },
+      "sequence_channel": {
+        "per_channel": {
+          "median_mae": [
+            0.0028986376735701926
+          ],
+          "median_rmse": [
+            0.003700454352554272
+          ],
+          "p95_rmse": [
+            0.005633148486109753
+          ],
+          "top5p_rmse_mean": [
+            0.005762378691465365
+          ],
+          "median_nrmse": [
+            0.008145464008840518
+          ]
+        },
+        "overall": {
+          "median_mae": 0.0028986376735701926,
+          "median_rmse": 0.003700454352554272,
+          "p95_rmse": 0.005633148486109753,
+          "top5p_rmse_mean": 0.005762378691465365,
+          "median_nrmse": 0.008145464008840518
+        }
+      },
+      "status": {
+        "success": true,
+        "stage": "evaluation/test",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "test",
+          "n_sequences": 20
+        }
+      }
+    }
+  },
+  "evaluation_status": {
+    "success": true,
+    "n_splits": 3,
+    "n_failed_splits": 0,
+    "failed_splits": [],
+    "split_status": {
+      "train": {
+        "success": true,
+        "stage": "evaluation/train",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "train",
+          "n_sequences": 40
+        }
+      },
+      "val": {
+        "success": true,
+        "stage": "evaluation/val",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "val",
+          "n_sequences": 20
+        }
+      },
+      "test": {
+        "success": true,
+        "stage": "evaluation/test",
+        "failure_type": null,
+        "exception_type": null,
+        "message": null,
+        "details": {
+          "split": "test",
+          "n_sequences": 20
+        }
+      }
+    },
+    "failure_policy": {
+      "non_finite_is_failure": true,
+      "divergent_prediction_is_failure": true,
+      "max_abs_prediction": 1000000.0,
+      "max_abs_loss": 1000000000000.0
+    }
+  },
+  "residuals_train": 2.68830408199388e-06,
+  "residuals_val": 4.924060637460552e-06,
+  "residuals_test": 1.6160181190121718e-05
+}

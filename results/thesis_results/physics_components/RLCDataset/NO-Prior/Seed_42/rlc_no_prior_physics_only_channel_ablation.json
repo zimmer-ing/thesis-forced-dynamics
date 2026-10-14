@@ -1,0 +1,319 @@
+{
+  "run_dir": "results/EvaluationProtocols/PB1_StandardHPO/RLCDataset/M2AdaptiveNeuralODE/Seed_42",
+  "output_dir": "results/EvaluationProtocols/P2_PhysicsEval/RLCDataset/M2AdaptiveNeuralODE/Seed_42",
+  "split": "test",
+  "dataset": "RLCDataset",
+  "model": "M2AdaptiveNeuralODE",
+  "history_length": 5,
+  "forecast_length": 50,
+  "test_or_split_windows": 398,
+  "response_channels": [
+    "V_out",
+    "I_in",
+    "V_int",
+    "I_int"
+  ],
+  "symbolic_channels": [
+    "V_out",
+    "I_in"
+  ],
+  "internal_channels": [
+    "V_int",
+    "I_int"
+  ],
+  "transferred_physics_state_tensors": 17,
+  "neural_only_ablation": {
+    "retrained": false,
+    "removed_term": "physics RHS",
+    "retained": "trained neural residual, scaling, initial state, inputs and solver settings"
+  },
+  "scaling_audit": {
+    "pretraining_scaling": true,
+    "pretraining_epochs": 1000,
+    "expected_scaling_keys": [
+      "ODE_bb.scaling_factor",
+      "ODE_Phy.scaling_factor",
+      "ODE.scaling_factor",
+      "ODE.physics_ode.scaling_factor",
+      "ODE.blackbox_ode.scaling_factor"
+    ],
+    "checkpoint_scaling_keys": [
+      "ODE_bb.scaling_factor",
+      "ODE_Phy.scaling_factor",
+      "ODE.scaling_factor",
+      "ODE.physics_ode.scaling_factor",
+      "ODE.blackbox_ode.scaling_factor"
+    ],
+    "fresh_scaling_before_load": {
+      "ODE_bb.scaling_factor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "ODE_Phy.scaling_factor": [
+        1.0
+      ],
+      "ODE.scaling_factor": [
+        1.0
+      ],
+      "ODE.physics_ode.scaling_factor": [
+        1.0
+      ],
+      "ODE.blackbox_ode.scaling_factor": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "scaling_after_load": {
+      "ODE_bb.scaling_factor": [
+        7129.400390625,
+        6540.57763671875,
+        3505.803955078125,
+        4429.0576171875
+      ],
+      "ODE_Phy.scaling_factor": [
+        1.0
+      ],
+      "ODE.scaling_factor": [
+        1.0
+      ],
+      "ODE.physics_ode.scaling_factor": [
+        1.0
+      ],
+      "ODE.blackbox_ode.scaling_factor": [
+        7129.400390625,
+        6540.57763671875,
+        3505.803955078125,
+        4429.0576171875
+      ]
+    },
+    "strict_load_ok": true,
+    "ode_bb_is_wrapper_blackbox": true
+  },
+  "metrics": {
+    "physics_only_initial_greybox_params": {
+      "groups": {
+        "symbolic_channels": {
+          "rmse": 3.7263951293978996,
+          "mse": 13.88602066040039,
+          "n_values": 39800,
+          "channels": [
+            "V_out",
+            "I_in"
+          ]
+        },
+        "internal_channels": {
+          "rmse": 0.9511501928595878,
+          "mse": 0.904686689376831,
+          "n_values": 39800,
+          "channels": [
+            "V_int",
+            "I_int"
+          ]
+        },
+        "all_channels": {
+          "rmse": 2.7194400657001174,
+          "mse": 7.395354270935059,
+          "n_values": 79600,
+          "channels": [
+            "V_out",
+            "I_in",
+            "V_int",
+            "I_int"
+          ]
+        }
+      },
+      "per_channel": {
+        "V_out": {
+          "rmse": 4.520773094701757,
+          "mse": 20.437389373779297,
+          "n_values": 19900
+        },
+        "I_in": {
+          "rmse": 2.708255991687272,
+          "mse": 7.33465051651001,
+          "n_values": 19900
+        },
+        "V_int": {
+          "rmse": 1.0668140232603407,
+          "mse": 1.1380921602249146,
+          "n_values": 19900
+        },
+        "I_int": {
+          "rmse": 0.8193175321746432,
+          "mse": 0.6712812185287476,
+          "n_values": 19900
+        }
+      }
+    },
+    "physics_only_with_m2_learned_physics_params": {
+      "groups": {
+        "symbolic_channels": {
+          "rmse": 3.6883140570586033,
+          "mse": 13.603660583496094,
+          "n_values": 39800,
+          "channels": [
+            "V_out",
+            "I_in"
+          ]
+        },
+        "internal_channels": {
+          "rmse": 0.9511501928595878,
+          "mse": 0.904686689376831,
+          "n_values": 39800,
+          "channels": [
+            "V_int",
+            "I_int"
+          ]
+        },
+        "all_channels": {
+          "rmse": 2.6933572504977117,
+          "mse": 7.254173278808594,
+          "n_values": 79600,
+          "channels": [
+            "V_out",
+            "I_in",
+            "V_int",
+            "I_int"
+          ]
+        }
+      },
+      "per_channel": {
+        "V_out": {
+          "rmse": 4.491969254209307,
+          "mse": 20.17778778076172,
+          "n_values": 19900
+        },
+        "I_in": {
+          "rmse": 2.651326452121465,
+          "mse": 7.029531955718994,
+          "n_values": 19900
+        },
+        "V_int": {
+          "rmse": 1.0668140232603407,
+          "mse": 1.1380921602249146,
+          "n_values": 19900
+        },
+        "I_int": {
+          "rmse": 0.8193175321746432,
+          "mse": 0.6712812185287476,
+          "n_values": 19900
+        }
+      }
+    },
+    "nn_only_with_m2_learned_weights": {
+      "groups": {
+        "symbolic_channels": {
+          "rmse": 1.4546251654458073,
+          "mse": 2.115934371948242,
+          "n_values": 39800,
+          "channels": [
+            "V_out",
+            "I_in"
+          ]
+        },
+        "internal_channels": {
+          "rmse": 1.2132071114392988,
+          "mse": 1.4718714952468872,
+          "n_values": 39800,
+          "channels": [
+            "V_int",
+            "I_int"
+          ]
+        },
+        "all_channels": {
+          "rmse": 1.3393666833289153,
+          "mse": 1.793903112411499,
+          "n_values": 79600,
+          "channels": [
+            "V_out",
+            "I_in",
+            "V_int",
+            "I_int"
+          ]
+        }
+      },
+      "per_channel": {
+        "V_out": {
+          "rmse": 1.423677161733971,
+          "mse": 2.0268566608428955,
+          "n_values": 19900
+        },
+        "I_in": {
+          "rmse": 1.4849285499004072,
+          "mse": 2.205012798309326,
+          "n_values": 19900
+        },
+        "V_int": {
+          "rmse": 1.3913146891125385,
+          "mse": 1.9357565641403198,
+          "n_values": 19900
+        },
+        "I_int": {
+          "rmse": 1.0039852719803486,
+          "mse": 1.0079864263534546,
+          "n_values": 19900
+        }
+      }
+    },
+    "m2_full_physics_plus_nn": {
+      "groups": {
+        "symbolic_channels": {
+          "rmse": 0.019394637454021587,
+          "mse": 0.000376151961972937,
+          "n_values": 39800,
+          "channels": [
+            "V_out",
+            "I_in"
+          ]
+        },
+        "internal_channels": {
+          "rmse": 0.013714196912678991,
+          "mse": 0.00018807919695973396,
+          "n_values": 39800,
+          "channels": [
+            "V_int",
+            "I_int"
+          ]
+        },
+        "all_channels": {
+          "rmse": 0.016796297032925164,
+          "mse": 0.0002821155940182507,
+          "n_values": 79600,
+          "channels": [
+            "V_out",
+            "I_in",
+            "V_int",
+            "I_int"
+          ]
+        }
+      },
+      "per_channel": {
+        "V_out": {
+          "rmse": 0.015193135161007563,
+          "mse": 0.0002308313560206443,
+          "n_values": 19900
+        },
+        "I_in": {
+          "rmse": 0.02283577322582704,
+          "mse": 0.0005214725388213992,
+          "n_values": 19900
+        },
+        "V_int": {
+          "rmse": 0.014026249166038727,
+          "mse": 0.0001967356656678021,
+          "n_values": 19900
+        },
+        "I_int": {
+          "rmse": 0.013394877483709251,
+          "mse": 0.00017942274280358106,
+          "n_values": 19900
+        }
+      }
+    }
+  },
+  "forecast_points_total": 19900
+}

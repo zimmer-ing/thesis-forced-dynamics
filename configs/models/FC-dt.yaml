@@ -1,0 +1,37 @@
+hidden_width:         # Width of hidden layers
+  default: 512
+  search_space:
+    type: "int"
+    low: 256
+    high: 1024
+    step: 128
+
+hidden_layers:        # Number of hidden layers
+  default: 2
+  search_space:
+    type: "int"
+    low: 0         # 0 => purely linear mapping
+    high: 4
+    step: 1
+
+activation:           # Activation function
+  default: "ReLU"
+  search_space:
+    type: "categorical"
+    choices: ["ReLU", "LeakyReLU", "ELU", "Sigmoid"]
+
+use_dt:               # Use time-step differences instead of local time coordinates
+  default: true
+
+layernorm:            # Layer normalization toggle
+  default: false
+  search_space:
+    type: "categorical"
+    choices: [true, false]
+
+learning_rate:        # Optimizer LR
+  default: 0.001
+  search_space:
+    type: "loguniform"
+    low: 1e-5
+    high: 1e-2
